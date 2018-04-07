@@ -1,0 +1,19 @@
+body {
+    background-size: cover;
+    background-color: #101010;
+    color: #ededed;
+}
+
+#input {
+    color: #ededed;
+    background-color: #101010;
+    border: none;
+    outline: none;
+    padding: 5px;
+    font-family: "Source Code Pro", monospace;
+    font-size: 16px;
+    text-align: right;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
