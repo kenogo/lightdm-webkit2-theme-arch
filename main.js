@@ -11,6 +11,14 @@ window.authentication_complete = function() {
         $( 'body' ).fadeOut( 1000, () => {
             lightdm.login(lightdm.authentication_user, null);
         } );
+    } else {
+        getImg();
+        input.value = "";
+        input.placeholder = "user";
+        input.type = "text";
+        input.disabled = false;
+        input.focus();
+        input.select();
     }
 }
 
@@ -29,23 +37,21 @@ window.onload = function() {
     getImg();
     input.focus();
     input.select();
+    input.value = lightdm.select_user_hint;
+    if(input.value) {
+      authenticate(input.value);
+    }
 }
 
 function authenticate(input_text) {
-    if(!lightdm.in_authentication) {
+    if(!lightdm.in_authentication || !lightdm.authentication_user) {
         lightdm.authenticate(input_text);
         input.value = "";
         input.type = "password";
         input.placeholder = "password";
-    } else if(!lightdm.authentication_user) {
-        lightdm.respond(input_text);
-        input.value = "";
-        input.type = "password";
-        input.placeholder = "password";
+        input.disabled = false;
     } else {
+        input.disabled = true;
         lightdm.respond(input_text);
-        input.value = "";
-        input.type = "text";
-        input.placeholder = "user";
     }
 }
